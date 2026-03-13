@@ -516,15 +516,16 @@
         const WEBHOOK_URL = 'https://script.google.com/macros/s/AKfycbwPu3Ft6-_l9EqfAVJyiFg3xNF8FpKanahWigIQgLBFXwxuqs35WHkLD4LvBpGH5TtKMQ/exec';
 
         fetch(WEBHOOK_URL, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            email:         email,
-            paymentId:     response.razorpay_payment_id,
-            amount:        CONFIG.price,
-            product:       CONFIG.pdfTitle,
-          })
-        }).catch(e => console.log('Webhook error:', e));
+        method: 'POST',
+        mode: 'no-cors',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+        email:     email,
+        paymentId: response.razorpay_payment_id,
+        amount:    CONFIG.price,
+        product:   CONFIG.pdfTitle,
+        })
+}).catch(e => console.log('Webhook error:', e));
 
         // Success screen dikhao
         document.getElementById('success-overlay').classList.add('show');
